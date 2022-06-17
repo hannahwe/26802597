@@ -28,13 +28,53 @@ abstract: |
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
-pacman::p_load(modelsummary, gt, knitr, kableExtra, tidyverse)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+options(dplyr.summarise.inform=F)
+if(!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 ```
+
+
+
+```{r}
+#Load in data
+covid_desc <- read.csv("data/COVID/covid_data_description.csv")
+covid_deaths <- read.csv("data/COVID/Deaths_by_cause.csv")
+covid_owid <- read.csv("data/COVID/owid-covid-data.csv")
+```
+
 
 \newpage
 
-# 
+# Introduction
+
+The Covid-19 pandemic has caused great distress and turmoil around the world. Many lives have been affected and taken by this disease and it continues to negatively impact our way of living as we know it. The great global impact of this pandemic highlights the need of a informed public as well as informed policy makers. This short report therefore aims at providing an overview of the consequences Covid 19 had. 
+
+Starting off, we are going to look at some general statistics. 
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid cases.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#shows the general distribution of cases over time by continent 
+#problem: missing values for continent --> omitt missing values?
+g <- plot_cases_continent1(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#shows the general distribution of cases over time by continent (now via ISO code)
+g <- plot_cases_iso(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#COVID cases per region, can see that Africa 
+h <- plot_cases_separate(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+h
+```
+
+
 
 
 
