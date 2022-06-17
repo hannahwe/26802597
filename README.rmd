@@ -36,9 +36,10 @@ In question 1, I will first start with looking at the experience of African coun
 #Question 2
 
 ```{r}
+#source in code files
 list.files('Question2/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 #Load in data
-weather <- read.csv("data/London/london_weather.csv")
+weather <- read.csv("Question2/data/London/london_weather.csv")
 View(weather)
 
 #Change date column from integer to date column
@@ -48,6 +49,33 @@ weather <- transform(weather, date = as.Date(as.character(date), "%Y%m%d"))
 df_weather <- weather
 df_weather$date <- format(weather$date, format="%Y")
 ```
+In question 2, I first had to chance the date column so that its class would be a date as well and no longer a character. Afterwards, I started plotting the snow depth, precipitation and mean temperature over the whole time period from 1979 to 2020, however changed the date so that it would no longer display every day and month, but only the year. For the sunshine, I only plotted the values for the year 2020. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Snow Depth in London.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- plot_snow(weather)
+g
+```
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Sunshine in London in 2020.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+g <- plot_sunshine(weather, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Rain in London.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- plot_precipitation(df_weather, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+Then for the mean temperature, I researched the mean annual temperature for both London and Cape Town and added a horizontal line in different colors at their respective values. I also added a red line at 0 degrees to highlight where the temperature would drop below zero. 
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Temperature in London.\\label{Figure4}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- plot_temp(df_weather, xaxis_rows = 2, xaxis_size = 5)
+g
+#average annual temp in cape town 22 degrees, in London 12.4 degrees
+```
+
+
 
 
 #Question 4
