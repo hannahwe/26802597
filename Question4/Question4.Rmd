@@ -1,7 +1,7 @@
 ---
-title: "Paged HTML Document"
-author: "NF Katzke"
-date: "November 2021"
+title: "Accessing New Streaming Services"
+author: "Hannah Westerhaus"
+date: "June 2022"
 # date: "`r Sys.Date()`"
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
 output:
@@ -37,10 +37,31 @@ View(titles)
 
 \newpage
 
-# Introduction {-}
 
-```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Snow Depth in London.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+The streaming market gained huge popularity in recent years, with companies like Netflix, Disney and Apple investing high amounts of money to offer a broad variety of movies and series to their customers. As the number of companies providing streaming services rise, it is crucial to take into account the interests and wishes of customers. This short report serves to highlight the most important findings when it comes to customer demand. 
+
+As one can see in Figure 1, the popularity of movie ratings increased drastically since the early 2000s. Viewers do not only watch movies, but engage with them and actively voice their opinions. This is why vor any new streaming provider, it is critical to keep in mind costumer demand as a key factor in business success, especially when competing with large firms such as Netflix and Disney. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Evolution of Movie Critique.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g<- movie_critic(titles)
+g
+```
+
+\newpage
+As the number of fan ratings for both IMDb and TMDb gained their most significance in the early 2000s, let us know take a look at the average IMDb score, aggregated over all movies and divided by the number of movies released in that year. As one can see in Figure2, the average scores do no differ significantly, however in the early 2000s, opinions of movie critics appeared to be slightly  diverse. The years 2015 and 2016 together with 2019 and 2020 saw the highest average IMDb scores aggregated over all movies. Especially the year 2020 is important to note here with COVID-19 and the accompanying lockdowns positively impacting the revenues of all streaming providers. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Average IMDb Score.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 g <- average_score_per_movier(titles)
 g
 ```
+\newpage
+Keeping in mind the importance of costumer demand we highlighted earlier, let us take a quick look at the most popular movie genres over the last years, according to the number of movies produced in the respective genres. It is clear from  Figure3 that comedy and drama are on the top of the list of most popular movie genres, with documentaries and romance movies following suit. What is also reflected in the data is the increasing popularity of reality tv formats, which appropriately combine comedic elements as well as romance. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Most Popular Movie Genres.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+t <- table_genre(titles)
+t
+```
+
+To summarize, as a new provider of streaming services, it is of utmost importance to listen to customer demand and engage with viewers about their preferences. Popular databased such as IMDb can appropriately be used to get a snapshot of viewers opinions on different movies and genres in general. 
+
 
