@@ -1,0 +1,34 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+# Purpose
+
+Purpose of this README is to display the solutions to the exam questions.
+
+
+```{r}
+
+rm(list = ls()) # Clean your environment:
+gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
+library(tidyverse)
+list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+```
+#Starting Off
+
+I will now set the folder structure for the project, creating different folders for the differnt questions. 
+
+```{r, eval = F}
+CHOSEN_LOCATION <- "C:/Users/hanna/Documents/Studium/MA/3. Semester/Data Science/26802597/"
+fmxdat::make_project(FilePath = glue::glue("{CHOSEN_LOCATION}/"), 
+                     ProjNam = "26802597")
+Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question1")
+Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question2")
+Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question3")
+Texevier::create_template(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question4")
+```
+```
+
+
