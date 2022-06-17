@@ -72,9 +72,20 @@ g
 #COVID cases per region, can see that Africa 
 h <- plot_cases_separate(covid_owid, xaxis_rows = 2, xaxis_size = 5)
 h
+#try and do the same thing for the deaths later on and add interpretation 
+#if time, group by upper middle income countries as well etc. 
 ```
 
+```{r}
+gg <- plot_cases_elderly(covid_owid)
+gg
+```
 
-
+#More detailed insights
+Select 6 different countries (Germany,USA, Ghana, South Africa, Chile, Australia) and compare them: make a case study. Start with 
+- comparing cases based on elderly population (look at regions that have highest and lowest count)
+- compared it based on poverty 
+- based on smokers (maybe case study)
+- effect of vaccines
 
 
