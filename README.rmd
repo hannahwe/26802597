@@ -29,6 +29,10 @@ Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), tem
 Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question3")
 Texevier::create_template(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question4")
 ```
+#Question 1 
+
+In question 1, I will first start with looking at the experience of African countries specifically and how they were affected by the pandemic. 
+
 ```
 
 
