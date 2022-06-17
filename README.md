@@ -106,3 +106,43 @@ g
 g <- plot_sunshine(weather, xaxis_rows = 2, xaxis_size = 5)
 g
 ```
+
+`
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Rain in London.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- plot_precipitation(df_weather, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+Then for the mean temperature, I researched the mean annual temperature for both London and Cape Town and added a horizontal line in different colors at their respective values. I also added a red line at 0 degrees to highlight where the temperature would drop below zero. 
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Temperature in London.\\label{Figure4}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- plot_temp(df_weather, xaxis_rows = 2, xaxis_size = 5)
+g
+#average annual temp in cape town 22 degrees, in London 12.4 degrees
+```
+
+
+#Question 3
+
+
+
+
+#Question 4
+
+```{r}
+# Source in all your functions:
+# walk is the 'silent' version of map, which is similar to lapply.
+list.files('Question4/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
+```
+
+
+In question 4, after setting up my Texevier template by changing my name, date etc., and sourcing in my relevant functions that I stored in the code file, I first start with reading in my data normally using the read.csv function. I read in both data frames separately because I do not see a common variable by which to join both data frames. I concentrated on the titles data frame since it had more variables and thus more information available for plots and tables. 
+
+In my first graph I looked at the evolution of IMDb, TMDb scores and IMDb votes. I gave them different colours to make it visually nicer and then put all of the three graphs into one as a better overview and as an introduction into my short report. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Evolution of Movie Critique.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+titles <- read.csv("question4/data/netflix/titles.csv")
+g<- movie_critic(titles)
+g
+```
