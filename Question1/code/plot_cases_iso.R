@@ -16,7 +16,7 @@ g <- df_plot_general_iso %>%
     geom_line(aes(x = date, y = total_cases, color = iso_code), alpha = 0.8,
               size = 1) +
     theme_bw() + theme(legend.position = "bottom") + labs(x = "Date",
-                                                            y = "Total Cases", title = "Total Number of COVID cases per region",
+                                                            y = "Total Cases", title = "Total Number of COVID cases per continent",
                                                             caption = "Our World in Data") +
     scale_x_date()  + scale_y_continuous()
 

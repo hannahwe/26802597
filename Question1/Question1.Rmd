@@ -1,7 +1,7 @@
 ---
-title: "Paged HTML Document"
-author: "NF Katzke"
-date: "November 2021"
+title: "Covid-19 Statistics"
+author: "Hannah Westerhaus"
+date: "June 2022"
 # date: "`r Sys.Date()`"
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
 output:
@@ -16,14 +16,7 @@ output:
     # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
     self_contained: TRUE
 abstract: |
-    This is an abstract. Much can be written here. Uncomment this line to go without an abstract.
-    Abstracts have no spaces, but can have bullets.
-
-    Bullets can be created as follows
-
-    + You can add bullets, but do not add colons please.
-
-    + Line breaks are also not permitted.
+    This short report provides an overview of COVID-19 statistics and data.
 
 ---
 
@@ -32,7 +25,6 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 options(dplyr.summarise.inform=F)
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
-list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 ```
 
 
@@ -42,16 +34,17 @@ list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~sourc
 covid_desc <- read.csv("data/COVID/covid_data_description.csv")
 covid_deaths <- read.csv("data/COVID/Deaths_by_cause.csv")
 covid_owid <- read.csv("data/COVID/owid-covid-data.csv")
+
+#Source code
+list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 ```
 
 
 \newpage
 
-# Introduction
-
 The Covid-19 pandemic has caused great distress and turmoil around the world. Many lives have been affected and taken by this disease and it continues to negatively impact our way of living as we know it. The great global impact of this pandemic highlights the need of a informed public as well as informed policy makers. This short report therefore aims at providing an overview of the consequences Covid 19 had. 
 
-Starting off, we are going to look at some general statistics. 
+The following two figures provide an overview of the rapid development of COVID-19 cases. They are grouped by the different continents. 
 
 ```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid cases.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 #shows the general distribution of cases over time by continent 
@@ -67,25 +60,24 @@ g
 g <- plot_cases_iso(covid_owid, xaxis_rows = 2, xaxis_size = 5)
 g
 ```
+The following graph then further details the number of COVID cases by providing a plot for each region separately. It is noticeable that while cases rose very quickly in Asia (outbreak of the pandemic), but subsequently also Europe and North America (due to higher mobility of these populations), in Africa the number of cases remained comparatively very low, similar to Oceania. It would be interesting to discuss the factors leading to the low number of (registered) cases.  
 
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
-#COVID cases per region, can see that Africa 
+#COVID cases per region, can see that Africa has low number of cases 
 h <- plot_cases_separate(covid_owid, xaxis_rows = 2, xaxis_size = 5)
 h
-#try and do the same thing for the deaths later on and add interpretation 
-#if time, group by upper middle income countries as well etc. 
+
+```
+The following graph then provides an overview about the total number of deaths per continent. It is noticeable that both the number of cases and the number of deaths are higher in Europe and North America, both regions with lower poverty, higher life expectancy and higher median age. This indicates that there is a relation between the disease and these factors, indicating that with higher age, more people die. The higher poverty could indicate that countries do not have the resources to do a lot of test, thus the number of registered cases is low, while the actual number might be higher. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure5}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#COVID cases per region, can see that Africa has low number of cases 
+g <- plot_deaths_iso2(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+
 ```
 
-```{r}
-gg <- plot_cases_elderly(covid_owid)
-gg
-```
 
-#More detailed insights
-Select 6 different countries (Germany,USA, Ghana, South Africa, Chile, Australia) and compare them: make a case study. Start with 
-- comparing cases based on elderly population (look at regions that have highest and lowest count)
-- compared it based on poverty 
-- based on smokers (maybe case study)
-- effect of vaccines
+
 
 

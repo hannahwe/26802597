@@ -31,6 +31,25 @@ Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), tem
 ```
 #Question 1 
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+options(dplyr.summarise.inform=F)
+if(!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+```
+
+
+```{r}
+#Load in data
+covid_desc <- read.csv("data/COVID/covid_data_description.csv")
+covid_deaths <- read.csv("data/COVID/Deaths_by_cause.csv")
+covid_owid <- read.csv("data/COVID/owid-covid-data.csv")
+
+#Source code
+list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
+```
+
+
 In question 1, I will first start with looking at the experience of African countries specifically and how they were affected by the pandemic. 
 
 #Question 2
@@ -75,15 +94,14 @@ g
 #average annual temp in cape town 22 degrees, in London 12.4 degrees
 ```
 
+#Question 3
+
 
 
 
 #Question 4
 
 ```{r}
-library(pacman)
-p_load(tidyverse, lubridate)
-
 # Source in all your functions:
 # walk is the 'silent' version of map, which is similar to lapply.
 list.files('Question4/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
