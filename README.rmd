@@ -41,16 +41,45 @@ library(tidyverse)
 
 ```{r}
 #Load in data
-covid_desc <- read.csv("data/COVID/covid_data_description.csv")
-covid_deaths <- read.csv("data/COVID/Deaths_by_cause.csv")
-covid_owid <- read.csv("data/COVID/owid-covid-data.csv")
+covid_desc <- read.csv("Question1/data/COVID/covid_data_description.csv")
+covid_deaths <- read.csv("Question1/data/COVID/Deaths_by_cause.csv")
+covid_owid <- read.csv("Question1/data/COVID/owid-covid-data.csv")
 
 #Source code
-list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
+list.files('Question1/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 ```
 
 
-In question 1, I will first start with looking at the experience of African countries specifically and how they were affected by the pandemic. 
+In question 1, I start with loading in the data and examining the data frames. I then group the different countries by continent, once using the continent variable and once by searching for "OWID". Since there are a lot of blank spaces under the continent column, it is more appropriate to rather use the continent indicators under the iso code. I then also looked at the number of deaths per region and made deductions about the relation of the number of deaths and poverty, old age, higher life expectancy etc. 
+
+```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid cases.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#shows the general distribution of cases over time by continent 
+#problem: missing values for continent --> omitt missing values?
+g <- plot_cases_continent1(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#shows the general distribution of cases over time by continent (now via ISO code)
+g <- plot_cases_iso(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+```
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#COVID cases per region, can see that Africa has low number of cases 
+h <- plot_cases_separate(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+h
+
+```
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Total Covid Cases.\\label{Figure5}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+#COVID cases per region, can see that Africa has low number of cases 
+g <- plot_deaths_iso2(covid_owid, xaxis_rows = 2, xaxis_size = 5)
+g
+
+```
+
+
 
 #Question 2
 
