@@ -1,7 +1,7 @@
 ---
-title: "Paged HTML Document"
-author: "NF Katzke"
-date: "November 2021"
+title: "Report about the London Weather"
+author: "Hannah Westerhaus"
+date: "June 2022"
 # date: "`r Sys.Date()`"
 bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
 output:
@@ -15,7 +15,8 @@ output:
     toc: true
     # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
     self_contained: TRUE
-
+abstract: |
+    This report is for my dear friend in order to convince her to stay in the warm and sunny South Africa.
 ---
 
 ```{r setup, include=FALSE}
@@ -26,7 +27,6 @@ library(tidyverse)
 library(ggplot2)
 list.files('code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
 ```
-
 
 
 ```{r}
@@ -40,13 +40,6 @@ library(lubridate)
 weather <- transform(weather, date = as.Date(as.character(date), "%Y%m%d"))
 df_weather <- weather
 df_weather$date <- format(weather$date, format="%Y")
-
-weather$date <- year(weather$date)
-
-year(date)
-weather$date <- format(weather$date, format="%Y")
-weather <- transform(weather, date = as.Date(format="%Y"))
-year(weather$date)
 ```
 
 \newpage
@@ -54,31 +47,34 @@ year(weather$date)
 
 Dear Friend, 
 
-in order to persuate you to stay in sunny South Africa, let me present to you my findings about the London weather. 
-
+in order to persuate you to stay in sunny South Africa, let me present to you my findings about the London weather. Let me first start out with some basics. I know how afraid you are of the cold and let me remind you that in South Africa, more specifically in the Western Cape, snow is virtually unknown. Please convince yourself by the graph I present to you below how terribly cold you will feel with snow as deep as 4 cm most recently in 2019. 
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Snow Depth in London.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 g <- plot_snow(weather)
 g
 ```
+Now to relieve you of some of your fears that have surely surfaced after this first graph, let me calm you down by presenting you with the hours of sunshine in 2020. Please take careful note of the winter months...Just imagine lockdown in London.
+
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Sunshine in London in 2020.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 
 g <- plot_sunshine(weather, xaxis_rows = 2, xaxis_size = 5)
 g
-#mention Covid, combine 2020 graphs in one 
 ```
+As if the snow was not enough, I have highlighted for you the extensive amount of rain you will face, in every case my goodbye present for you will be an umbrella!
 
 ```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Rain in London.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 g <- plot_precipitation(df_weather, xaxis_rows = 2, xaxis_size = 5)
 g
-
 ```
+And last but not least, please compare the average annual temperature for Cape Town (green line) and London (blue line). Please also note how many times the temperature crosses the red line, which should remind you of my first snow plot. All in all, I am sure that by now, you are fully convinced to stay in beautiful Stellenbosch and South Africa and look forward to the many days we will spend together here. 
 
 ```{r, warning =  FALSE, fig.align = 'center', fig.cap = "Temperature in London.\\label{Figure4}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 g <- plot_temp(df_weather, xaxis_rows = 2, xaxis_size = 5)
 g
 #average annual temp in cape town 22 degrees, in London 12.4 degrees
 ```
+All in all, I am sure that by now, you are fully convinced to stay in beautiful Stellenbosch and South Africa and look forward to the many days we will spend together here.
 
+All the best, your friend Hannah 
 
 
 

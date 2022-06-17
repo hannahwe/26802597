@@ -33,6 +33,22 @@ Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), tem
 
 In question 1, I will first start with looking at the experience of African countries specifically and how they were affected by the pandemic. 
 
+#Question 2
+
+```{r}
+list.files('Question2/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
+#Load in data
+weather <- read.csv("data/London/london_weather.csv")
+View(weather)
+
+#Change date column from integer to date column
+library(lubridate)
+
+weather <- transform(weather, date = as.Date(as.character(date), "%Y%m%d"))
+df_weather <- weather
+df_weather$date <- format(weather$date, format="%Y")
+```
+
 
 #Question 4
 
