@@ -1,5 +1,7 @@
 movie_critic <- function(titles, xaxis_size = 5, xaxis_rows = 3){
 
+    titles <- read.csv("data/netflix/titles.csv")
+
     a <- titles %>%
         ggplot() +
         geom_bar(aes(x = release_year, y = imdb_score), stat = "identity", fill = "#6669ff") +

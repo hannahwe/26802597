@@ -18,7 +18,7 @@ list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.
 ```
 #Starting Off
 
-I will now set the folder structure for the project, creating different folders for the differnt questions. 
+I will now set the folder structure for the project, creating different folders for the different questions. 
 
 ```{r, eval = F}
 CHOSEN_LOCATION <- "C:/Users/hanna/Documents/Studium/MA/3. Semester/Data Science/26802597/"
@@ -27,12 +27,45 @@ fmxdat::make_project(FilePath = glue::glue("{CHOSEN_LOCATION}/"),
 Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question1")
 Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question2")
 Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question3")
-Texevier::create_template(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question4")
+Texevier::create_template_html(directory = glue::glue("{CHOSEN_LOCATION}/"), template_name = "Question4")
 ```
 #Question 1 
 
 In question 1, I will first start with looking at the experience of African countries specifically and how they were affected by the pandemic. 
 
+
+#Question 4
+
+```{r}
+library(pacman)
+p_load(tidyverse, lubridate)
+
+# Source in all your functions:
+# walk is the 'silent' version of map, which is similar to lapply.
+list.files('Question4/code/', full.names = T, recursive = T) %>% as.list() %>% walk(~source(.))
+```
+
+
+In question 4, after setting up my Texevier template by changing my name, date etc., and sourcing in my relevant functions that I stored in the code file, I first start with reading in my data normally using the read.csv function. I read in both data frames separately because I do not see a common variable by which to join both data frames. I concentrated on the titles data frame since it had more variables and thus more information available for plots and tables. 
+
+In my first graph I looked at the evolution of IMDb, TMDb scores and IMDb votes. I gave them different colours to make it visually nicer and then put all of the three graphs into one as a better overview and as an introduction into my short report. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Evolution of Movie Critique.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+titles <- read.csv("question4/data/netflix/titles.csv")
+g<- movie_critic(titles)
+g
+```
+For  my second graph, I first checked how many movies were released each year since the start of the database. I then create a new data frame out of that and merge it with the original one to include the number of released movies per year. I then create a new column where I aggregate each IMDb score of each movie released in each year and then divide it by the number of movies released in that year. Then I plot it displaying only the years from 2000 on because there fewer IMDb scores available which would bias the results. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Average IMDb Score.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- average_score_per_movier(titles)
+g
+```
+Then in my table, I only looked at the genres column of my data frame that only had the number of movies and genres, and then ordered it with the highest number first. I then extracted the first 9 columns and used the gt package to make a table of of my resulting new data frame. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Most Popular Movie Genres.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+t <- table_genre(titles)
+t
 ```
 
 

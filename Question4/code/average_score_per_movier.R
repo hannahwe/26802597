@@ -1,6 +1,8 @@
 average_score_per_movier <- function(titles, xaxis_size = 5, xaxis_rows = 3){
 
 
+
+
     #how many movies per year
     titles %>% filter(release_year>2021)
 
