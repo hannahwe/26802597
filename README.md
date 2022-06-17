@@ -146,3 +146,17 @@ titles <- read.csv("question4/data/netflix/titles.csv")
 g<- movie_critic(titles)
 g
 ```
+
+For  my second graph, I first checked how many movies were released each year since the start of the database. I then create a new data frame out of that and merge it with the original one to include the number of released movies per year. I then create a new column where I aggregate each IMDb score of each movie released in each year and then divide it by the number of movies released in that year. Then I plot it displaying only the years from 2000 on because there fewer IMDb scores available which would bias the results. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Average IMDb Score.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- average_score_per_movier(titles)
+g
+```
+
+Then in my table, I only looked at the genres column of my data frame that only had the number of movies and genres, and then ordered it with the highest number first. I then extracted the first 9 columns and used the gt package to make a table of of my resulting new data frame. 
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Most Popular Movie Genres.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+t <- table_genre(titles)
+t
+```
